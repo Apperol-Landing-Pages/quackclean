@@ -38,3 +38,20 @@ $(".questions-head").on("click", function () {
     currentItem.addClass("active");
     currentItem.find(".questions-body").slideDown();
 });
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); 
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+  })
+  .then(response => {
+    if (response.ok) {
+      form.reset(); 
+      alert("Message sent successfully!");
+    }
+  });
+});
